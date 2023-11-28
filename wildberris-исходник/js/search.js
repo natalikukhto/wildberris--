@@ -3,9 +3,6 @@ const search = function () {
     const searchBtn = document.querySelector('.search-block > button');
 
     searchBtn.addEventListener('click', () => {
-        input.addEventListener('input', (event) => {
-            return event.target.value;
-        })
         console.log(input.value);
     })
 }
