@@ -50,6 +50,7 @@ const search = function () {
 
                 if (window.location.pathname !== "/wildberris--/wildberris-%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA/goods.html") {
                     window.location.href = '/wildberris--/wildberris-исходник/goods.html';
+
                 } else (
                     renderGoods(array)
                 )
