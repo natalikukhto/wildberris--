@@ -22,19 +22,20 @@ const search = function () {
                         <span class="button-price">$${good.price}</span>
                     </button>
                 </div>
-            `
+            `;
             goodsContainer.append(goodBlock);
             // console.log(good);
         })
     }
 
     const getData = (value) => {
-        fetch('./db/db.json')
+        //fetch('./db/db.json')
+        fetch('/wildberris--/wildberris-исходник/db/db.json')
             .then((res) => res.json())
             .then((data) => {
                 // console.log('data: ', data);
 
-                const array = data.filter(good => {
+                const array = data.filter((good) => {
                     return good.name.toLowerCase().includes(value.toLowerCase());
                 });
 
@@ -46,10 +47,10 @@ const search = function () {
                 }
                 category ? console.log('yes') : console.log('no');*/
 
-                localStorage.setItem('data', JSON.stringify(array));
+                localStorage.setItem('goods', JSON.stringify(array));
 
-                if (window.location.pathname !== "/wildberris--/wildberris-%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA/goods.html") {
-                    window.location.href = '/wildberris--/wildberris-исходник/goods.html';
+                if (window.location.pathname !== "/wildberris--/wildberris-исходник/goods.html") {
+                    window.location.href = "/wildberris--/wildberris-исходник/goods.html";
 
                 } else (
                     renderGoods(array)

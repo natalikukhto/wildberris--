@@ -8,7 +8,7 @@ const getGoods = () => {
         const goodsContainer = document.querySelector('.long-goods-list');
         goodsContainer.innerHTML = '';
 
-        goods.forEach(good => {
+        goods.forEach((good) => {
             const goodBlock = document.createElement('div');
 
             goodBlock.classList.add('col-lg-3');
@@ -24,14 +24,18 @@ const getGoods = () => {
                         <span class="button-price">$${good.price}</span>
                     </button>
                 </div>
-            `
+            `;
             goodsContainer.append(goodBlock);
             //console.log(good);
         })
     }
 
     const getData = (value, category) => {
-        fetch('./db/db.json')
+        //fetch('./db/db.json')
+        fetch('/wildberris--/wildberris-исходник/db/db.json')
+
+            //fetch("https://berry-bf3fb-default-rtdb.asia-southeast1.firebasedatabase.app/db.json")
+
             .then((res) => res.json())
             .then((data) => {
                 // console.log('data: ', data);
@@ -45,17 +49,18 @@ const getGoods = () => {
                 }
                 category ? console.log('yes') : console.log('no');*/
 
-                localStorage.setItem('data', JSON.stringify(array));
+                localStorage.setItem('goods', JSON.stringify(array));
 
-                if (window.location.pathname !== "/wildberris--/wildberris-%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA/goods.html") {
-                    window.location.href = '/wildberris--/wildberris-исходник/goods.html';
+
+                if (window.location.pathname !== "/wildberris--/wildberris-исходник/goods.html") {
+                    window.location.href = "/wildberris--/wildberris-исходник/goods.html";
 
 
                 } else (
                     renderGoods(array)
                 )
 
-                //console.log(window.location);
+                console.log(window.location);
             });
     };
     links.forEach((link) => {
@@ -63,23 +68,24 @@ const getGoods = () => {
             event.preventDefault();
             const linkValue = link.textContent;
             const category = link.dataset.field;
-            // console.log(category);
+            console.log(category);
             getData(linkValue, category);
         });
     });
     if (localStorage.getItem('goods') &&
+        //window.location.pathname === "/wildberris--/wildberris-исходник/goods.html") {
         window.location.pathname === "/wildberris--/wildberris-%D0%B8%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA/goods.html") {
-        renderGoods(JSON.parse(localStorage.getItem('goods')))
+        renderGoods(JSON.parse(localStorage.getItem('goods')));
 
     }
 
     if (more) {
-        more.addEventListener('click', () => {
+        more.addEventListener('click', (event) => {
             event.preventDefault();
             getData();
-        })
+        });
     }
 
-}
+};
 
 getGoods();
